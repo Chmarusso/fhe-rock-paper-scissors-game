@@ -126,19 +126,8 @@ contract FHERockPaperScissors is SepoliaConfig {
         game.encryptedP1Wins = FHE.makePubliclyDecryptable(game.encryptedP1Wins);
         game.encryptedIsTie = FHE.makePubliclyDecryptable(game.encryptedIsTie);
 
-        FHE.allow(game.encryptedP1Wins, game.player1);
-        FHE.allow(game.encryptedP1Wins, game.player2);
-        FHE.allow(game.encryptedIsTie, game.player2);
-        FHE.allow(game.encryptedIsTie, game.player1);
-
-        // Note: The individual moves (encryptedPlayer1Choice, encryptedPlayer2Choice)
-        // remain encrypted and cannot be decrypted publicly
-
-        // Why we can't reveal the winner here:
-        // Solidity does not support using encrypted booleans (ebool) in if statements.
-        // We can compute with encrypted values, but cannot conditionally branch on them.
-        // The winner must be determined off-chain by decrypting encryptedP1Wins and encryptedIsTie.
-        // Anyone can decrypt these publicly decryptable values to see the outcome.
+        FHE.allowThis(game.encryptedP1Wins);
+        FHE.allowThis(game.encryptedIsTie);
 
         game.status = GameStatus.Completed;
     }
