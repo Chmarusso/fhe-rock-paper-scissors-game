@@ -42,7 +42,6 @@ The Rock Paper Scissors game uses fully homomorphic encryption (FHE) to ensure t
 ```bash
 # Clone the repository
 git clone <repository-url>
-cd dapps
 
 # Install dependencies
 pnpm install
