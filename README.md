@@ -2,6 +2,9 @@
 
 A privacy-preserving Rock Paper Scissors game built with fhEVM (Fully Homomorphic EVM). This dApp demonstrates how to build interactive games where player choices remain encrypted until both players have submitted, ensuring fair gameplay through cryptographic privacy.
 
+![fhe-paper-game-1](https://github.com/user-attachments/assets/e5ee48c1-c95b-40c6-b0d0-60d6091859e0)
+
+
 ## Project Structure
 
 This repository has a monorepo structure with the following components:
