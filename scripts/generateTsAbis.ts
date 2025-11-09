@@ -19,7 +19,7 @@ const generatedContractComment = `
 
 const DEPLOYMENTS_DIR = "./packages/hardhat/deployments";
 const ARTIFACTS_DIR = "./packages/hardhat/artifacts";
-const TARGET_DIR = "./packages/erc7984example/contracts/";
+const TARGET_DIR = "./packages/rock-paper-scissors/contracts/";
 
 function getDirectories(path: string) {
   return fs

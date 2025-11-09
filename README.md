@@ -1,6 +1,6 @@
-# fhEVM dApp Examples
+# FHE Rock Paper Scissors Game
 
-This repository contains example dApps built using fhEVM (Fully Homomorphic EVM). Each example demonstrates different aspects of building privacy-preserving smart contracts using FHE operations.
+A privacy-preserving Rock Paper Scissors game built with fhEVM (Fully Homomorphic EVM). This dApp demonstrates how to build interactive games where player choices remain encrypted until both players have submitted, ensuring fair gameplay through cryptographic privacy.
 
 ## Project Structure
 
@@ -9,53 +9,31 @@ This repository has a monorepo structure with the following components:
 ```
 dapps/
 ├── packages/
-│   ├── hardhat/                   # Smart contracts & deployment examples
+│   ├── hardhat/                   # FHERockPaperScissors smart contract & tests
 │   ├── fhevm-sdk/                 # FHEVM SDK package
-│   └── erc7984example/            # React erc7984 example application
+│   └── rock-paper-scissors/        # Rock Paper Scissors game frontend
 └── scripts/                       # Build and deployment scripts
 ```
 
-## Smart Contract Examples
+## About the Game
 
-The `./packages/hardhat` folder contains several privacy-preserving smart contract examples:
+The Rock Paper Scissors game uses fully homomorphic encryption (FHE) to ensure that player choices remain private until both players have submitted their moves. This prevents cheating and ensures fair gameplay.
 
-### Basic FHE Operations
-- **Encryption/Decryption** - Examples of encrypting and decrypting values
-- **FHE Operators** - Basic homomorphic operations like addition and conditional logic
-- **User Decrypt** - User-side decryption examples
-- **Public Decrypt** - Public on-chain decryption capabilities
+### How It Works
 
-### Advanced Applications
-- **FHE Wordle** - Privacy-preserving word guessing game using encrypted letter comparisons
-- **Confidential Auctions** - Multiple auction implementations with encrypted bids:
-  - Blind auctions with sealed bids
-  - Dutch auctions with descending prices
+1. **Game Creation**: One player creates a new game
+2. **Joining**: Another player joins the game
+3. **Encrypted Submissions**: Both players submit their choices (Rock, Paper, or Scissors) as encrypted values
+4. **Winner Computation**: Once both choices are submitted, the smart contract computes the winner using homomorphic operations on encrypted data
+5. **Public Decryption**: The game outcome becomes publicly decryptable, allowing anyone to verify the result
 
-### Token & Wrapper Contracts
-- **Confidential Token Example** - Mock confidential token for testing
-- **ERC20 Wrapper** - Wrapper for standard ERC20 tokens
-- **ETH Wrapper** - Wrapper for native ETH
-- **Faucet Contract** - Test token distribution contract
+### Features
 
-### Mock Contracts
-- **Mock USDZ** - Mock stablecoin implementation
-- **Prize Item** - Mock NFT-like contract
-
-Each example includes detailed documentation in its respective README explaining the implementation and FHE usage.
-
-## Frontend examples
-
-### ERC7984 Token Example Frontend
-
-The `./packages/erc7984example` directory contains a simple React-based frontend that demonstrates interacting with an ERC7984 confidential token smart contract using the fhEVM SDK.
-
-**Features:**
-- Uses OpenZeppelin's confidential smart contract library.
-- Connect your Ethereum wallet (e.g., via MetaMask).
-- Mint, transfer, and check balances of ERC7984 confidential tokens, all using fully homomorphic encryption under the hood.
-- Perform transactions with strong privacy guarantees: amounts and balances remain encrypted on-chain.
-- User-friendly interface to experiment with confidential token operations.
-
+- **Privacy-Preserving**: Player choices remain encrypted until both players submit
+- **Fair Play**: Cryptographic guarantees prevent cheating
+- **Transparent Results**: Game outcomes are publicly verifiable
+- **User-Friendly Interface**: React-based frontend with wallet integration
+- **Full Test Coverage**: Comprehensive test suite for the smart contract
 
 ## 🛠️ Quick Start
 
@@ -115,10 +93,10 @@ pnpm run start
 
 ### ⚠️ Sepolia Production note
 
-- In production, `NEXT_PUBLIC_ALCHEMY_API_KEY` must be set (see `packages/erc7984example/scaffold.config.ts`). The app throws if missing.
-- Ensure `packages/erc7984example/contracts/deployedContracts.ts` points to your live contract addresses.
+- In production, `NEXT_PUBLIC_ALCHEMY_API_KEY` must be set (see `packages/rock-paper-scissors/scaffold.config.ts`). The app throws if missing.
+- Ensure `packages/rock-paper-scissors/contracts/deployedContracts.ts` points to your live contract addresses.
 - Optional: set `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` for better WalletConnect reliability.
-- Optional: add per-chain RPCs via `rpcOverrides` in `packages/erc7984example/scaffold.config.ts`.
+- Optional: add per-chain RPCs via `rpcOverrides` in `packages/rock-paper-scissors/scaffold.config.ts`.
 
 ## 🔧 Troubleshooting
 
@@ -131,6 +109,7 @@ When developing with MetaMask and Hardhat, you may encounter these common issues
 **Problem**: MetaMask tracks transaction nonces, but when you restart Hardhat, the node resets while MetaMask doesn't update its tracking.
 
 **Solution**:
+
 1. Open MetaMask extension
 2. Select the Hardhat network
 3. Go to **Settings** → **Advanced**
@@ -142,6 +121,7 @@ When developing with MetaMask and Hardhat, you may encounter these common issues
 **Problem**: MetaMask caches smart contract view function results. After restarting Hardhat, you may see outdated data.
 
 **Solution**:
+
 1. **Restart your entire browser** (not just refresh the page)
 2. MetaMask's cache is stored in extension memory and requires a full browser restart to clear
 
@@ -151,9 +131,8 @@ For more details, see the [MetaMask development guide](https://docs.metamask.io/
 
 ## Contributing
 
-This repository serves as a comprehensive example of building privacy-preserving dApps with fhEVM. Feel free to explore the examples, run the tests, and use them as a foundation for your own projects.
+This repository serves as an example of building privacy-preserving games with fhEVM. Feel free to explore the code, run the tests, and use it as a foundation for your own FHE-based dApps.
 
 ## 📄 License
 
 This project is licensed under the **BSD-3-Clause-Clear License**. See the [LICENSE](LICENSE) file for details.
-
