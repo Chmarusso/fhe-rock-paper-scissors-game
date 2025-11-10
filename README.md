@@ -4,13 +4,12 @@ A privacy-preserving Rock Paper Scissors game built with fhEVM (Fully Homomorphi
 
 ![fhe-paper-game-1](https://github.com/user-attachments/assets/e5ee48c1-c95b-40c6-b0d0-60d6091859e0)
 
-
 ## Project Structure
 
 This repository has a monorepo structure with the following components:
 
 ```
-dapps/
+dapp/
 ├── packages/
 │   ├── hardhat/                   # FHERockPaperScissors smart contract & tests
 │   ├── fhevm-sdk/                 # FHEVM SDK package
@@ -99,6 +98,29 @@ pnpm run start
 - Ensure `packages/rock-paper-scissors/contracts/deployedContracts.ts` points to your live contract addresses.
 - Optional: set `NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID` for better WalletConnect reliability.
 - Optional: add per-chain RPCs via `rpcOverrides` in `packages/rock-paper-scissors/scaffold.config.ts`.
+
+### Running contract tests
+
+Run the smart contract test suite to verify the game logic:
+
+```bash
+# Run all contract tests
+pnpm run hardhat:test
+
+# Or use the shorthand
+pnpm test
+```
+
+The test suite includes:
+
+- Game creation and joining logic
+- Encrypted choice submission
+- Winner computation for all game outcomes (Rock vs Paper, Paper vs Scissors, etc.)
+- Tie detection
+- Public decryption of game results
+- Access control and validation
+
+All tests run against a local Hardhat network with mock FHEVM, so no external dependencies are required.
 
 ## 🔧 Troubleshooting
 
