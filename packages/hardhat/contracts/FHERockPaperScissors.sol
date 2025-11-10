@@ -123,11 +123,18 @@ contract FHERockPaperScissors is SepoliaConfig {
 
         // Make only the outcome publicly decryptable (not the individual moves)
         // This allows anyone to decrypt and see who won, but not the individual choices
+
         game.encryptedP1Wins = FHE.makePubliclyDecryptable(game.encryptedP1Wins);
         game.encryptedIsTie = FHE.makePubliclyDecryptable(game.encryptedIsTie);
 
+        // This is a temporary solution to make the encrypted results available to the players.
+        // fhevm-sdk doesn't support public decryption for some reason.
         FHE.allowThis(game.encryptedP1Wins);
         FHE.allowThis(game.encryptedIsTie);
+        FHE.allow(game.encryptedP1Wins, game.player1);
+        FHE.allow(game.encryptedP1Wins, game.player2);
+        FHE.allow(game.encryptedIsTie, game.player1);
+        FHE.allow(game.encryptedIsTie, game.player2);
 
         game.status = GameStatus.Completed;
     }
