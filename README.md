@@ -120,6 +120,8 @@ The test suite includes:
 - Public decryption of game results
 - Access control and validation
 
+<img width="752" height="489" alt="image" src="https://github.com/user-attachments/assets/6b6d5e95-855f-47c8-b8d2-f6136bf8d989" />
+
 All tests run against a local Hardhat network with mock FHEVM, so no external dependencies are required.
 
 ## 🔧 Troubleshooting
